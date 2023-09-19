@@ -11,29 +11,32 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/:id')
+  @Get('/user/:id')
   getUsernameByIndex(@Param('id') id : number, @Res() res: Response){
     try {
       const username = this.appService.getUsernameByIndex(id);
-      res.send(username)
+      res.send(username);
+      console.log('해당 유저의 이름은' + username);
     } catch(error) {
       res.status(400).send(error.message);
     }
   }
 
-  @Delete('/:id')
+  @Delete('/user/:id')
   deleteUser(@Param('id') id : number, @Res() res : Response){
     try {
       this.appService.deleteUser(id);
+      console.log('Delete Success!');
     } catch(error) {
       res.status(400).send(error.message)
     }
   }
   
-  @Get('/adduser/id')
+  @Get('/add-user/:user')
   addUser(@Param('user') user : string, @Res() res : Response) {
     try {
       this.appService.addUser(user);
+      console.log('Add Success!');
     } catch(error) {
       res.status(400).send(error.message)
     }

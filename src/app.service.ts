@@ -1,27 +1,31 @@
 import { Injectable } from '@nestjs/common';
 
+const users: string[] = [
+  'a', 'b', 'c', 'd'
+]
+
 @Injectable()
 export class AppService {
-  usernames: string[];
-  constructor(){
-    this.usernames = ['a', 'b'];
-  }
+  // usernames: string[];
+  // constructor(){
+  //   this.usernames = ['a', 'b', 'c', 'd'];
+  // }
   getHello(): string {
     return 'Hello World!';
   }
 
   getUsernameByIndex(index: number) {
-    if(index < 0 || index >= this.usernames.length) throw new Error('Invalid index');
-    return this.usernames[index];
+    if(index < 0 || index >= users.length) throw new Error('Invalid index');
+    return users[index];
   }
 
   addUser(username: string) {
-    this.usernames.push(username);
+    users.push(username);
   }
 
   deleteUser(index: number) {
-    if(index < 0 || index >= this.usernames.length) throw new Error('Invalid index');
-    this.usernames.splice(index, 1)
+    if(index < 0 || index >= users.length) throw new Error('Invalid index');
+    users.splice(index, 1)
   }
 
 }
